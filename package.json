@@ -1,0 +1,55 @@
+{
+  "name": "squirrel-gill",
+  "version": "1.0.0",
+  "description": "React hooks for sessionStorage and localStorage",
+  "keywords": [
+    "react",
+    "react-hooks",
+    "persistent",
+    "localstorage",
+    "sessionstorage"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "watch": "babel src -w -d lib",
+    "lint": "prettier --check *.md *.json src/*.js",
+    "example": "npm run build && parcel example/index.html"
+  },
+  "files": [
+    "lib"
+  ],
+  "author": "Holybasil",
+  "license": "MIT",
+  "repository": "https://github.com/Holybasil/squirrel-gill",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{md,json}": "prettier --write",
+    "*.js": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.5",
+    "parcel": "^2.0.0-beta.2",
+    "prettier": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
