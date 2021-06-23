@@ -51,6 +51,8 @@ import useStorage from 'squirrel-gill';
 
 // ...
 const [name, setName] = useStorage(sessionStorage, 'name');
+// or
+const [name, setName] = useStorage(sessionStorage, 'name', "holybasil"); // `holybasil` will be put in storage as the initial value
 ```
 
 ## Development
