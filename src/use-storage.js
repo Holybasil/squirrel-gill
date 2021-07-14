@@ -2,7 +2,7 @@ import { StorageChangeEvent, isInstanceOfChangedStorage } from './custom-event';
 import { writeItem, readItem, parseStorage } from './storage';
 import { useEffect, useState, useCallback } from 'react';
 
-function useWebStorage(storage, key, defaultValue) {
+function useStorage(storage, key, defaultValue) {
   const [storageState, setStorageState] = useState(
     readItem(storage, key) ?? defaultValue
   );
@@ -30,8 +30,8 @@ function useWebStorage(storage, key, defaultValue) {
     }
 
     return () => {
-      window.removeEventListener(StorageChangeEvent.type, listener);
-      window.removeEventListener('storage', listener);
+      window.removeEventListener(StorageChangeEvent.type, onStorageChange);
+      window.removeEventListener('storage', onStorageChange);
     };
   }, [key]);
 
@@ -43,4 +43,4 @@ function useWebStorage(storage, key, defaultValue) {
   return [storageState, setState];
 }
 
-export default useWebStorage;
+export default useStorage;
