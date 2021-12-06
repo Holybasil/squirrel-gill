@@ -1,6 +1,10 @@
 import { StorageChangeEvent } from './custom-event';
 export function parseStorage(value) {
-  return value !== null ? JSON.parse(value) : null;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return value;
+  }
 }
 
 function stringifyStorage(value) {
