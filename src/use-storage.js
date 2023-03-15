@@ -1,6 +1,6 @@
-import { StorageChangeEvent, isInstanceOfChangedStorage } from './custom-event';
-import { writeItem, readItem, parseStorage } from './storage';
-import { useEffect, useState, useCallback } from 'react';
+import { StorageChangeEvent, isInstanceOfChangedStorage } from "./custom-event";
+import { writeItem, readItem, parseStorage } from "./storage";
+import { useEffect, useState, useCallback } from "react";
 
 function useStorage(storage, key, defaultValue) {
   const [storageState, setStorageState] = useState(
@@ -23,15 +23,18 @@ function useStorage(storage, key, defaultValue) {
     // current tab
     window.addEventListener(StorageChangeEvent.type, onStorageChange);
     // other tab
-    window.addEventListener('storage', onStorageChange);
+    window.addEventListener("storage", onStorageChange);
 
-    if (storage.getItem(key) === null && defaultValue) {
+    if (
+      (storage.getItem(key) === null || storage.getItem(key) === undefined) &&
+      defaultValue
+    ) {
       writeItem(storage, key, defaultValue);
     }
 
     return () => {
       window.removeEventListener(StorageChangeEvent.type, onStorageChange);
-      window.removeEventListener('storage', onStorageChange);
+      window.removeEventListener("storage", onStorageChange);
     };
   }, [key]);
 
